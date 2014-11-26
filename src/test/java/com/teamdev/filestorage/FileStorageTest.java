@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class FileStorageTest {
     private FileStorage storage;
     private final long maxStorageSpace = 10000;
-    private final String rootFolder = "C:/Testing";
+    private final String rootFolder = "C:/Test";
     private final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345674890";
     private final Random random = new Random();
 
@@ -198,10 +198,12 @@ public class FileStorageTest {
     private boolean hasStorageFile(String key, String root) {
         File storageFolder = new File(root + "/.system/");
 
-        for (File folder : storageFolder.listFiles()) {
-            for (String file : folder.list()) {
-                if (file.equals(key)) {
-                    return true;
+        for (File firstFolder : storageFolder.listFiles()) {
+            for (File secondFolder : firstFolder.listFiles()) {
+                for (String file : secondFolder.list()) {
+                    if (file.equals(key)) {
+                        return true;
+                    }
                 }
             }
         }
