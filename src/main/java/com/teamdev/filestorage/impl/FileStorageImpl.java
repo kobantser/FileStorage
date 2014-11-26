@@ -2,7 +2,6 @@ package com.teamdev.filestorage.impl;
 
 import com.teamdev.filestorage.FileStorage;
 import com.teamdev.filestorage.exception.DuplicateFileException;
-import com.teamdev.filestorage.exception.NoSuchFileException;
 import com.teamdev.filestorage.exception.OutOfMemoryException;
 
 import java.io.InputStream;
@@ -29,7 +28,7 @@ public class FileStorageImpl implements FileStorage {
     }
 
     @Override
-    public boolean deleteFile(String key) throws NoSuchFileException {
+    public boolean deleteFile(String key) {
         return hashFile.remove(key);
     }
 
@@ -44,7 +43,7 @@ public class FileStorageImpl implements FileStorage {
     }
 
     @Override
-    public InputStream readFile(String key) throws NoSuchFileException {
+    public InputStream readFile(String key) {
         return hashFile.openStream(key);
     }
 
